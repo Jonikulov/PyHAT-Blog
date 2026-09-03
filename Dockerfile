@@ -51,11 +51,11 @@ COPY --from=builder --chown=django:django /app /app
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PATH="/app/.venv/bin:$PATH"
 
 # Create directories & ensure scripts are executable
-# RUN mkdir -p /app/staticfiles && \
-#     chown -R django:django /app/staticfiles && \
-#     chmod -R 755 /app/staticfiles && \
-#     chmod +x /app/setup-django.sh
-RUN chmod +x /app/setup-django.sh
+RUN mkdir -p /app/staticfiles && \
+    chown -R django:django /app/staticfiles && \
+    chmod -R 755 /app/staticfiles && \
+    chmod +x /app/setup-django.sh
+# RUN chmod +x /app/setup-django.sh
 
 WORKDIR /app
 USER django

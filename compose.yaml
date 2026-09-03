@@ -23,6 +23,7 @@ services:
     volumes:
       - .:/app
       - /app/.venv  # anonymous volume: keeps the container's own venv, not your host's
+      - /app/staticfiles    # shields the image's staticfiles dir
     env_file:
       - ./.env
     restart: unless-stopped
