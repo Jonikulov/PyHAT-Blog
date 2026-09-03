@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+{% load allauth account %}
+
+{% block head_title %}- Sign In{% endblock head_title %}
+
+{% block base_content %}
+<main class="max-w-lg mx-auto mt-10">
+  <div class="flex flex-col bg-gray-800 text-white p-6 lg:p-16 rounded-md">
+
+    <div class="flex flex-col text-center">
+      <h1 class="text-xl md:text-2xl lg:text-3xl font-semibold">Sign in to your account</h1>
+      <p class="text-sm mt-1">Or <a href="{{ signup_url }}" class="font-bold hover:underline">sign up instead</a>?</p>
+    </div>
+
+    <form method="POST" action="{% url 'account_login' %}" class="space-y-8 my-5">
+      {% csrf_token %}
+      {% if form.errors %}
+        {% for field, errors in form.errors.items %}
+          {% for error in errors %}
+            <div class="error">
+              {{ error }}
+            </div>
+          {% endfor %}
+        {% endfor %}
+      {% endif %}
+
+      <div>
+        <label for="{{ form.login.id_for_label }}" class="sr-only">Email</label>
+        <div
+          class="form-field">
+            {% render_field form.login class="block text-black shadow-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 text-sm bg-white" %}
+        </div>
+      </div>
+
+      <div>
+        <label for="{{ form.password.id_for_label }}" class="sr-only">Password</label>
+        <div
+          class="form-field">
+            {% render_field form.password class="block text-black shadow-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 text-sm bg-white" %}
+        </div>
+      </div>
+
+      <div class="flex items-center">
+        {% render_field form.remember class="focus:outline-hidden focus:ring-2 focus:ring-emerald-500 h-4 w-4 text-emerald-600 border-gray-300 rounded-sm" %}
+        <label for="{{ form.remember.id_for_label }}" class="ml-3 text-sm">{{ form.remember.label }}</label>
+      </div>
+
+      <button type="submit" class="button primary w-full text-sm cursor-pointer">Sign in</button>
+
+      {% if SOCIALACCOUNT_ENABLED %}
+        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+      {% endif %}
+
+    </form>
+
+  </div>
+</main>
+{% endblock base_content %}

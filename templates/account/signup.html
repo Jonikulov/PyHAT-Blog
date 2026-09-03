@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+{% load allauth %}
+
+{% block head_title %}- Sign Up{% endblock head_title %}
+
+{% block base_content %}
+<main class="max-w-7xl mx-auto mt-10 lg:mt-20">
+  <div class="flex flex-col items-center lg:flex-row lg:items-start space-y-6">
+
+    <div class="basis-3/5 lg:mt-10">
+      <h1 class="text-4xl font-extrabold leading-none lg:text-5xl xl:text-6xl">
+        <span class="md:block">Write and collaborate</span>
+        <span class="md:block text-emerald-600">
+          <span class="text-black">on your </span>next piece
+        </span>
+      </h1>
+      <p class="mt-6 text-xl text-gray-600">Write on our platform for maximum productivity</p>
+    </div>
+
+    <div class="basis-2/5">
+      <div class="bg-gray-800 text-white rounded-lg">
+
+        <div class="p-6 lg:p-16">
+          <p class="text-xl font-semibold">Create your account</p>
+          <div class="mt-6">
+            <form method="POST" action="{% url 'account_signup' %}" class="space-y-6 mb-4">
+              {% csrf_token %}
+
+              <div>
+                <label for="{{ form.email.id_for_label }}" class="sr-only">Email</label>
+                <div
+                  class="form-field">
+                    {% render_field form.email class="block text-black shadow-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 text-sm bg-white" %}
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label for="{{ form.password1.id_for_label }}" class="sr-only">Password</label>
+                  {% if form.password1.errors %}
+                    <div class="error [&>ul]:space-y-2">
+                      {{ form.password1.errors }}
+                    </div>
+                  {% endif %}
+                <div
+                  class="form-field">
+                    {% render_field form.password1 class="block text-black shadow-sm focus:outline-hidden focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300 text-sm bg-white" %}
+                </div>
+                <details class="text-sm rounded-md border border-gray-700 open:[&_svg]:rotate-90">
+                  <summary class="px-2 py-1 flex justify-between items-center list-none cursor-pointer bg-gray-700">
+                    <div>Password requirements</div>
+                    <span>{% include "svgs/chevron.svg" with class="w-5 h-5" %}</span>
+                  </summary>
+                  <div class="px-2 py-1 mt-2 min-w-full [&>ul]:space-y-1 w-0">{{ form.password1.help_text | safe }}</div>
+                </details>
+              </div>
+
+              <div>
+                <p class="text-sm text-center">
+                  Already have an account?
+                  <a href="{% url 'account_login' %}" class="hover:underline font-bold">
+                    Sign in instead
+                  </a>
+                </p>
+                <button type="submit" class="button primary w-full mt-2 text-sm">
+                  Create your account
+                </button>
+              </div>
+            </form>
+
+            <div class="space-y-4">
+              {% if SOCIALACCOUNT_ENABLED %}
+                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+              {% endif %}
+            </div>
+
+          </div>
+        </div>
+
+        <div class="px-4 py-6 bg-gray-700 sm:px-10 rounded-b-lg">
+          <p class="text-xs leading-5">
+            By signing up, you agree to our
+            <a href="#" class="font-medium hover:underline">Terms & Conditions</a>,
+            <a href="#" class="font-medium hover:underline">Data Policy</a>,
+            and <a href="#" class="font-medium hover:underline">Cookies Policy</a>.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+{% endblock base_content %}

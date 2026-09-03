@@ -1,0 +1,47 @@
+name: django-blog-project
+services:
+  db:
+    image: postgres:18-trixie
+    env_file:
+      - ./.env
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+      interval: 2s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: django_blog_web
+    init: true
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - /app/.venv  # anonymous volume: keeps the container's own venv, not your host's
+    env_file:
+      - ./.env
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+
+    develop:  # development mode only
+      watch:
+        # Sync code changes instantly
+        - action: sync
+          path: .
+          target: /app
+          ignore:
+            - .venv/
+            - __pycache__/
+        # Full container rebuild only a new package added
+        - action: rebuild
+          path: pyproject.toml
+
+volumes:
+  postgres_data:

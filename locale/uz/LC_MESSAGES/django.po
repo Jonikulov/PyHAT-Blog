@@ -1,0 +1,75 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Javohir_Dev jonikulov.uz@gmail.com, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-27 05:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Javohir_Dev jonikulov.uz@gmail.com\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: blog_app/managers.py:7
+msgid "The Email must be set"
+msgstr "Email bo'lishi majburiy"
+
+#: blog_app/managers.py:19
+msgid "Superuser must have is_staff=True"
+msgstr "Superuser'da is_staff=True bo'lishi kerak"
+
+#: blog_app/managers.py:21
+msgid "Superuser must have is_superuser=True"
+msgstr "Superuser'da is_superuser=True bo'lishi kerak"
+
+#: blog_app/models.py:18
+msgid "email address"
+msgstr "email manzil"
+
+#: blog_app/models.py:27
+msgid "Article"
+msgstr "Maqola"
+
+#: blog_app/models.py:28
+msgid "Articles"
+msgstr "Maqolalar"
+
+#: blog_app/models.py:30
+msgid "title"
+msgstr "sarlavha"
+
+#: blog_app/models.py:31
+msgid "content"
+msgstr "kontent"
+
+#: blog_app/models.py:32
+msgid "word count"
+msgstr "so'zlar sanog'i"
+
+#: blog_app/models.py:33
+msgid "twitter post"
+msgstr "tvitter post"
+
+#: blog_app/models.py:35
+msgid "status"
+msgstr "status"
+
+#: blog_app/models.py:41
+msgid "created at"
+msgstr "yaratildi"
+
+#: blog_app/models.py:43
+msgid "updated at"
+msgstr "yangilandi"
+
+#: blog_app/models.py:46
+msgid "creator"
+msgstr "muallif"
