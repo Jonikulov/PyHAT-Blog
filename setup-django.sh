@@ -17,7 +17,7 @@ python manage.py migrate --noinput
 # Start the actual web server
 echo "Starting web server..."
 
-if [["$ENV_STATE" == "production"]]; then
+if [[ "$ENV_STATE" == "production" ]]; then
     gunicorn django_blog_project.wsgi --workers $GUNICORN_WORKERS --forwarded-allow-ips "*"
 else
     python manage.py runserver 0.0.0.0:8000
