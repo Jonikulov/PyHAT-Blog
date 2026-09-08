@@ -22,7 +22,7 @@ from django.urls import include, path
 from django.views.generic.base import RedirectView
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path(f"{settings.ADMIN_URL}/", admin.site.urls),
     path("articles/", include("blog_app.urls")),
     path("accounts/", include("allauth.urls")),
     path("", SignupView.as_view(), name="account_signup"),
