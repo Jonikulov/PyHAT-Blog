@@ -172,6 +172,7 @@ DEFAULT_FROM_EMAIL = env("MAILGUN_FROM_EMAIL")
 ANYMAIL = {
     "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
     "SEND_DEFAULTS": {"tags": ["DjangoBlogProject"]},
+    # "MAILGUN_SENDER_DOMAIN": env("MAILGUN_SENDER_DOMAIN"),
 }
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 
